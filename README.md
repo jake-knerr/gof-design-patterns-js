@@ -1,43 +1,54 @@
 <!-- omit in toc -->
+
 # GoF Design Patterns
 
 This document summarizes the design patterns contained within the seminal work _Design Patterns: Elements of Reusable Object-Oriented Software_ using JavaScript.
 
 The authors are often referred to as the Gang of Four (GoF).
 
+Feel free to create an issue or open a pull request if you have something to add or believe something is incorrect.
+
+Also, please star this repository if you find it useful. Thanks!
+
 <!-- omit in toc -->
+
 ## Copyright
 
 © Jake Knerr at Blotli.
 
 <!-- omit in toc -->
+
 ## Table of Contents
-- [Creational Patterns](#creational-patterns)
-  - [Factory Method](#factory-method)
-  - [Abstract Factory](#abstract-factory)
-  - [Builder](#builder)
-  - [Prototype](#prototype)
-  - [Singleton](#singleton)
-- [Structural Patterns](#structural-patterns)
-  - [Adapter](#adapter)
-  - [Bridge](#bridge)
-  - [Composite](#composite)
-  - [Decorator](#decorator)
-  - [Facade](#facade)
-  - [Flyweight](#flyweight)
-  - [Proxy](#proxy)
-- [Behavioral Patterns](#behavioral-patterns)
-  - [Chain of Responsibility](#chain-of-responsibility)
-  - [Command](#command)
-  - [Interpreter](#interpreter)
-  - [Iterator](#iterator)
-  - [Mediator](#mediator)
-  - [Memento](#memento)
-  - [Observer](#observer)
-  - [State](#state)
-  - [Strategy](#strategy)
-  - [Template Method](#template-method)
-  - [Visitor](#visitor)
+
+- [GoF Design Patterns](#gof-design-patterns)
+  - [Copyright](#copyright)
+  - [Table of Contents](#table-of-contents)
+  - [Creational Patterns](#creational-patterns)
+    - [Factory Method](#factory-method)
+    - [Abstract Factory](#abstract-factory)
+    - [Builder](#builder)
+    - [Prototype](#prototype)
+    - [Singleton](#singleton)
+  - [Structural Patterns](#structural-patterns)
+    - [Adapter](#adapter)
+    - [Bridge](#bridge)
+    - [Composite](#composite)
+    - [Decorator](#decorator)
+    - [Facade](#facade)
+    - [Flyweight](#flyweight)
+    - [Proxy](#proxy)
+  - [Behavioral Patterns](#behavioral-patterns)
+    - [Chain of Responsibility](#chain-of-responsibility)
+    - [Command](#command)
+    - [Interpreter](#interpreter)
+    - [Iterator](#iterator)
+    - [Mediator](#mediator)
+    - [Memento](#memento)
+    - [Observer](#observer)
+    - [State](#state)
+    - [Strategy](#strategy)
+    - [Template Method](#template-method)
+    - [Visitor](#visitor)
 
 ---
 
@@ -54,7 +65,7 @@ The following patterns relate to creating objects.
 The factory method pattern is an factory object (creator) that has a single method that creates and returns objects (products).
 
 - _Creator_ — the factory.
-    - factoryMethod(): Product — creates and returns a product.
+  - factoryMethod(): Product — creates and returns a product.
 - _Product_ — objects created and returned by the creator.
 
 _Example:_
@@ -162,21 +173,21 @@ _Example - using prototypes:_
 function WidgetFactory() {
   // Product A prototype
   const bigWidgetProto = {
-    big: { propA: 1, propB: 2 }
+    big: { propA: 1, propB: 2 },
   };
 
   // Product B prototype
   const smallWidgetProto = {
-    small: { propC: 1, propD: 2 }
+    small: { propC: 1, propD: 2 },
   };
 
   // factoryMethod()
-  this.createBiggerWidget = function() {
+  this.createBiggerWidget = function () {
     return Object.create(bigWidgetProto);
   };
 
   // factoryMethod()
-  this.createSmallerWidget = function() {
+  this.createSmallerWidget = function () {
     return Object.create(smallWidgetProto);
   };
 }
@@ -305,8 +316,8 @@ const carPrototype = {
     cloned.drive = this.drive;
 
     return cloned;
-  }
-}
+  },
+};
 
 // client code
 const car = carPrototype.clone();
@@ -339,8 +350,8 @@ class Car {
 
 const corvette = Object.create(Car.prototype, {
   driveFast: {
-    value: () => console.log("driving fast!")
-  }
+    value: () => console.log("driving fast!"),
+  },
 });
 
 // client code
@@ -372,7 +383,7 @@ corvette.driveFast();
 
 #### Why Use This Pattern
 
-- Prototypes are built into JavaScript. 
+- Prototypes are built into JavaScript.
 
 #### Consequences
 
@@ -527,7 +538,7 @@ The bridge pattern is similar to the adapter pattern, but instead of hard-coding
 
 Unlike the adapter pattern, which is typically used to accommodate unplanned changes down the road, the bridge pattern is typically a part of the design phase. The classic example is support for different drivers, in which the implementor varies with each type of vendor (MySQL, MongoDB, etc.).
 
-- _Abstraction_ — presents the interface that the client code expects. 
+- _Abstraction_ — presents the interface that the client code expects.
   - setImpl(imp: Implementor) — pass in an implementor as the implementation of the interface.
   - operation() — a method that is implemented by the implementor.
 - _Implementor_ — defines an implementation of the abstraction's interface.
@@ -765,7 +776,7 @@ function dragsterDecorator() {
 let car = new Car();
 
 // turn car into a dragster
-dragsterDecorator.call(car); 
+dragsterDecorator.call(car);
 
 car.igniteRocketEngine();
 ```
@@ -861,7 +872,7 @@ _Example:_
 ```javascript
 // Flyweight constructor
 class Flyweight {
-  // type and manufacturer are properties of intrinsic state; treat them as 
+  // type and manufacturer are properties of intrinsic state; treat them as
   // immutable
   constructor(type, manufacturer) {
     // intrinsic state
@@ -925,7 +936,7 @@ const aircraft2 = new Aircraft("fixedWing", "boeing", 12);
 const aircraft3 = new Aircraft("rotary", "sikorsky", 55);
 const aircraft4 = new Aircraft("rotary", "sikorsky", 100);
 
-// you now have two flyweights storing ["fixedWing", "boeing"] and 
+// you now have two flyweights storing ["fixedWing", "boeing"] and
 // ["rotary", "sikorsky"]
 
 aircraft4.fly();
@@ -933,7 +944,7 @@ aircraft4.fly();
 
 #### Example Notes
 
-- Notice that the four aircraft are sharing two flyweights. 
+- Notice that the four aircraft are sharing two flyweights.
 - The intrinsic data fields `type` and `manufacturer` (on the flyweights) should be immutable. For the sake of brevity, the example assumes that client code treats the intrinsic data as immutable.
 
 #### Why Use This Pattern
@@ -980,7 +991,7 @@ class BankAccountProxy {
   }
 
   getMoney() {
-    // make sure that the database has started before allowing access to 
+    // make sure that the database has started before allowing access to
     // the subject
     if (!this.dbStarted) throw new Error("Start the database!");
 
@@ -1054,7 +1065,7 @@ const buttonTwo = new Button("Button Two", buttonOne, "wheelclick");
 const buttonThree = new Button("Button Three", buttonTwo, "doubleclick");
 
 // sender; set up a listener for clicks
-window.addEventListener("click", event => {
+window.addEventListener("click", (event) => {
   // request is the event object
   buttonThree.click(event);
 
@@ -1076,13 +1087,13 @@ window.addEventListener("click", event => {
 
 ### Command
 
-The command pattern is a technique to represent a request as an object. 
+The command pattern is a technique to represent a request as an object.
 
 Requests are encapsulated by objects (commands) that have an execute method that calls behavior on a separate object (receivers). The receiver satisfies the request. Objects that invoke behavior on commands (invokers) do not need to know anything about the implementation of the commands or the receivers. Invokers do not directly interact with receivers.
 
 Commands are also known as object-oriented callbacks.
 
-- _Command_ — has a reference to the receiver. 
+- _Command_ — has a reference to the receiver.
   - execute() — calls behavior on the receiver.
 - _Receiver_ — carries out a request. Not called directly by client code.
   - actionOne() — behavior that can be called by a command.
@@ -1134,7 +1145,7 @@ const turnRightCommand = new TurnRightCommand(car);
 // Invoker
 const steeringWheel = {
   left: turnLeftCommand.execute.bind(turnLeftCommand),
-  right: turnRightCommand.execute.bind(turnRightCommand)
+  right: turnRightCommand.execute.bind(turnRightCommand),
 };
 
 steeringWheel.left();
@@ -1210,15 +1221,15 @@ class Variable {
   }
 }
 
-// implementation detail for the pattern; takes a sentence and creates an 
-// abstract syntax tree composed of TerminalExpression and 
+// implementation detail for the pattern; takes a sentence and creates an
+// abstract syntax tree composed of TerminalExpression and
 // Non-TerminalExpression objects
 class Parser {
   constructor(expression) {
     const expressionStack = [];
     const tokens = expression.split(" ");
 
-    tokens.forEach(token => {
+    tokens.forEach((token) => {
       if (token === "+") {
         const subExpression = new Plus(
           expressionStack.pop(),
@@ -1288,7 +1299,7 @@ _Example:_
 ```javascript
 // Aggregate constructor
 class Collection {
-  // implementation detail; using an array as the backing store; client code 
+  // implementation detail; using an array as the backing store; client code
   // does not need to know this
   constructor(elements) {
     this.elements = elements;
@@ -1351,7 +1362,7 @@ console.log(cursor.currentItem());
 
 ### Mediator
 
-The mediator pattern involves objects (colleagues) that do not communicate directly with each other. Instead, a colleague interacts with an object (mediator), and the mediator performs the interactions with the other colleagues. 
+The mediator pattern involves objects (colleagues) that do not communicate directly with each other. Instead, a colleague interacts with an object (mediator), and the mediator performs the interactions with the other colleagues.
 
 Think of an air traffic controller; aircraft do not communicate with one another. Instead, they communicate with the air traffic controller (mediator), who sends messages to the appropriate airplanes (colleagues).
 
@@ -1624,7 +1635,7 @@ _Example:_
 // Context constructor
 class StateMachine {
   constructor() {
-    // maintain a reference to the current state object; sets default state 
+    // maintain a reference to the current state object; sets default state
     // object to a StateOne instance
     this.currentState = new StateOne(this);
   }
@@ -1699,7 +1710,7 @@ stateMachine.request();
 #### Consequences
 
 - State objects can now be shared.
-  
+
 **[⬆ Table of Contents](#table-of-contents)**
 
 ---
@@ -1771,11 +1782,11 @@ const travel = new Travel();
 travel.setStrategy(car);
 
 // logs "time -> 1000, cost -> 10"
-console.log(`time -> ${travel.getTravelTime()}, cost -> ${travel.getCost()}`); 
+console.log(`time -> ${travel.getTravelTime()}, cost -> ${travel.getCost()}`);
 
 travel.setStrategy(plane);
 
- // logs "time -> 10, cost -> 1000000"
+// logs "time -> 10, cost -> 1000000"
 console.log(`time -> ${travel.getTravelTime()}, cost -> ${travel.getCost()}`);
 ```
 
@@ -1811,7 +1822,7 @@ _Example:_
 ```javascript
 // AbstractClass
 class Pet {
-  // shared step; implemented in AbstractClass to reduce duplicate 
+  // shared step; implemented in AbstractClass to reduce duplicate
   // implementations in ConcreteClass instances
   eat() {
     console.log("How cute!");
@@ -1966,7 +1977,7 @@ cat.sayMyName(); // logs "I am type Cat. My breed is Foldex";
 #### Consequences
 
 - Since visitors rely on element's interface, it is tempting for element to allow visitors to access private state, thereby breaking encapsulation.
-- Since the added behavior doesn't change element's structure, this pattern doesn't violate the open/closed principle. 
+- Since the added behavior doesn't change element's structure, this pattern doesn't violate the open/closed principle.
 - Element does not need to change if a visitor changes. Thus, this pattern does not violate the single-responsibility principle.
 
 **[⬆ Table of Contents](#table-of-contents)**
