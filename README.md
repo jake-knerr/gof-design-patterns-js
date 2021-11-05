@@ -1,6 +1,6 @@
 <!-- omit in toc -->
 
-# GoF Design Patterns
+# Gang of Four (GoF) Design Patterns
 
 This document summarizes the design patterns contained within the seminal work _Design Patterns: Elements of Reusable Object-Oriented Software_ using JavaScript. The authors are often referred to as the Gang of Four (GoF).
 
@@ -18,7 +18,7 @@ Also, please star this repository if you find it useful. Thanks!
 
 ## Table of Contents
 
-- [GoF Design Patterns](#gof-design-patterns)
+- [Gang of Four (GoF) Design Patterns](#gang-of-four-gof-design-patterns)
   - [Copyright](#copyright)
   - [Table of Contents](#table-of-contents)
   - [Creational Patterns](#creational-patterns)
