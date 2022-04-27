@@ -10,9 +10,9 @@ Also, please star this repository if you find it useful. Thanks!
 
 <!-- omit in toc -->
 
-## Copyright
+## Author & Copyright
 
-© Jake Knerr at Blotli.
+Jake Knerr © Ardisia Labs LLC
 
 <!-- omit in toc -->
 
